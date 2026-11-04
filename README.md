@@ -1,16 +1,16 @@
 # System2MQTT – Export System Health Metrics to MQTT for Home Assistant
 
-System2MQTT is a lightweight Docker application that collects and publishes system health metrics from Windows and Linux systems using the Python `psutil` library.
+System2MQTT is a lightweight application that collects and publishes system health metrics from Windows and Linux systems using the Python `psutil` library.
 
 Metrics are published to an MQTT broker and automatically discovered by Home Assistant through the `ha-mqtt-discoverable` library, allowing system monitoring sensors to be integrated with minimal configuration.
 
-## Setup
+## Docker Setup
 
 Deploy the container using Docker with privileged access:
 
 ```bash
 docker run -d \
-  --name system2mqtt \
+  --name  \
   --privileged \
   --restart unless-stopped \
   -e MQTT_SERVER=localhost \
@@ -18,6 +18,24 @@ docker run -d \
 ```
 
 Optionally, mount the `/logs` directory to persist application logs outside the container.
+
+## Local Development Setup
+
+To run System2MQTT locally for development or testing purposes, follow these steps:
+
+**1. Set up the Python environment and install the required dependencies:**
+
+```bash
+./setup.sh
+```
+
+**2. Run the application:**
+
+```bash
+./run.sh
+```
+
+Environment variables can be configured or modified directly within `run.sh` before starting the application.
 
 ## Environment Variables
 
@@ -43,6 +61,13 @@ The following system metrics are collected and published to MQTT:
 - **Memory (RAM):** Utilization percentage, total, used, and available memory
 - **Swap:** Utilization percentage, total, used, and free space
 - **Disk:** Utilization percentage, total, used, and free space
+
+## Home Assistant Dashboard
+
+System2MQTT sensors are automatically discovered by Home Assistant through MQTT discovery. Once connected, system health metrics are available as entities and can be added to your Home Assistant dashboards.
+
+<!-- Replace the placeholder below with your Home Assistant screenshot -->
+![System2MQTT Home Assistant Dashboard](images/home-assistant.png)
 
 ## Software & Dependencies
 

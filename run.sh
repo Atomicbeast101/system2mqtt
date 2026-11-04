@@ -7,5 +7,6 @@
 
 export LOG_LEVEL=DEBUG
 export LOG_PATH=''
+export MQTT_SERVER='localhost'
 
 .venv/bin/python app.py
