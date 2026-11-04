@@ -10,12 +10,11 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 # Start App
 WORKDIR /app
 COPY requirements.txt /app
-COPY bin .
-COPY *.py .
-COPY entrypoint.sh .
-COPY setup.sh .
+COPY bin /app
+COPY *.py /app
+COPY entrypoint.sh /app
+COPY setup.sh /app
 RUN chmod +x /app/*.sh && chown appuser:appgroup /app -R
-RUN ls
 USER appuser
 ENTRYPOINT ["./entrypoint.sh"]
 CMD [".venv/bin/python", "app.py"]
