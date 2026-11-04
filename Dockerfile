@@ -15,6 +15,8 @@ COPY *.py /app
 COPY entrypoint.sh /app
 COPY setup.sh /app
 RUN chmod +x /app/*.sh && chown appuser:appgroup /app -R
+RUN ls
+RUN ls /app
 USER appuser
 ENTRYPOINT ["/app/entrypoint.sh"]
 CMD [".venv/bin/python", "app.py"]
