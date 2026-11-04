@@ -1,6 +1,6 @@
-# Linux2MQTT – Export System Health Metrics to MQTT for Home Assistant
+# System2MQTT – Export System Health Metrics to MQTT for Home Assistant
 
-Linux2MQTT is a lightweight Docker application that collects and publishes system health metrics from Windows and Linux systems using the Python `psutil` library.
+System2MQTT is a lightweight Docker application that collects and publishes system health metrics from Windows and Linux systems using the Python `psutil` library.
 
 Metrics are published to an MQTT broker and automatically discovered by Home Assistant through the `ha-mqtt-discoverable` library, allowing system monitoring sensors to be integrated with minimal configuration.
 
@@ -10,11 +10,11 @@ Deploy the container using Docker with privileged access:
 
 ```bash
 docker run -d \
-  --name linux2mqtt \
+  --name system2mqtt \
   --privileged \
   --restart unless-stopped \
   -e MQTT_SERVER=localhost \
-  ghcr.io/atomicbeast101/linux2mqtt:latest
+  ghcr.io/atomicbeast101/system2mqtt:latest
 ```
 
 Optionally, mount the `/logs` directory to persist application logs outside the container.

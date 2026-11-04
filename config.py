@@ -4,7 +4,7 @@ import os
 
 # Config Attributes
 ## General
-APP_NAME = 'linux2mqtt'
+APP_NAME = 'system2mqtt'
 APP_VERSION = os.environ.get('APP_VERSION', '0.0')
 SERVER_NAME = os.environ.get('SERVER_NAME', socket.gethostname())
 ## Logging
