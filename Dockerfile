@@ -16,5 +16,7 @@ COPY entrypoint.sh .
 COPY setup.sh .
 RUN chmod 755 ./*.sh && chown appuser:appgroup . -R
 USER appuser
+RUN ls -ls ./
+RUN ls -ls /app
 ENTRYPOINT ["./entrypoint.sh"]
 CMD ["/app/.venv/bin/python", "app.py"]
