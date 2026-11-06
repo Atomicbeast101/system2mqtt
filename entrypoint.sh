@@ -6,7 +6,7 @@
 ##############################################################################################
 
 echo "Setting up environment..."
-./setup.sh
+/app/setup.sh
 
 # Run from CMD or "docker run"/"kubectl run"
 exec "$@"
