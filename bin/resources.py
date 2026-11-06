@@ -6,6 +6,7 @@ import config
 
 # Attributes
 logger = logging.getLogger(config.APP_NAME)
+psutil.PROCFS_PATH = '/rootfs/proc'
 DISK_TYPES_TO_IGNORE = [
     'squashfs',
     'vfat'

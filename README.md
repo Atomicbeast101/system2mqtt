@@ -14,6 +14,7 @@ docker run -d \
   --privileged \
   --restart unless-stopped \
   -e MQTT_SERVER=localhost \
+  -v /proc:/rootfs/proc \
   ghcr.io/atomicbeast101/system2mqtt:latest
 ```
 
