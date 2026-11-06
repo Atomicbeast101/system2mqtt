@@ -24,10 +24,10 @@ SENSORS = {
         'source': resources.get_swap,
         'sensors': {}
     },
-    'DISKS': {
-        'source': resources.get_disks,
-        'sensors': {}
-    }
+    # 'DISKS': {
+    #     'source': resources.get_disks,
+    #     'sensors': {}
+    # }
 }
 
 # Functions

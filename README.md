@@ -61,13 +61,12 @@ The following system metrics are collected and published to MQTT:
 - **System Load:** Load average
 - **Memory (RAM):** Utilization percentage, total, used, and available memory
 - **Swap:** Utilization percentage, total, used, and free space
-- **Disk:** Utilization percentage, total, used, and free space
+<!-- - **Disk:** Utilization percentage, total, used, and free space -->
 
 ## Home Assistant Dashboard
 
 System2MQTT sensors are automatically discovered by Home Assistant through MQTT discovery. Once connected, system health metrics are available as entities and can be added to your Home Assistant dashboards.
 
-<!-- Replace the placeholder below with your Home Assistant screenshot -->
 ![System2MQTT Home Assistant Dashboard](images/home-assistant.png)
 
 ## Software & Dependencies
