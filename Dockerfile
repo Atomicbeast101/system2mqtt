@@ -6,15 +6,16 @@ ENV APP_VERSION=${APP_VERSION}
 
 # Dependencies
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN mkdir /logs
 
 # Start App
 WORKDIR /app
-COPY requirements.txt /app
-COPY bin .
+COPY requirements.txt .
+COPY bin ./bin
 COPY *.py .
 COPY entrypoint.sh .
 COPY setup.sh .
-RUN chmod +x /app/*.sh && chown appuser:appgroup /app -R
+RUN chmod 755 ./*.sh && chown appuser:appgroup . -R; chmod 755 /logs && chown appuser:appgroup /logs -R
 USER appuser
-ENTRYPOINT ["./app/entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
 CMD [".venv/bin/python", "app.py"]

@@ -6,10 +6,11 @@ import config
 
 # Attributes
 logger = logging.getLogger(config.APP_NAME)
-DISK_TYPES_TO_IGNORE = [
-    'squashfs',
-    'vfat'
-]
+# psutil.PROCFS_PATH = '/rootfs/proc'
+# DISK_TYPES_TO_IGNORE = [
+#     'squashfs',
+#     'vfat'
+# ]
 
 # Functions
 def get_cpu():
@@ -164,54 +165,55 @@ def get_swap():
 
     return data
 
-def get_disks():
-    AREA = 'Disk'
+# NOTE: Figure out later, have to figure out a safe way to mount all disks to container to check its size
+# def get_disks():
+#     AREA = 'Disk'
 
-    try:
-        data = []
-        disks = psutil.disk_partitions(all=False)
-        for disk in disks:
-            if disk.fstype not in DISK_TYPES_TO_IGNORE:
-                output = psutil.disk_usage(disk.mountpoint)
-                data.append({
-                    'utilization': {
-                        'name': f'{AREA} {disk.mountpoint} Utilization',
-                        'id': f'{AREA.lower()}_{disk.mountpoint.lower().replace('/', 'slash_').replace('__', '_')}_utilization',
-                        'class': None,
-                        'unit': '%',
-                        'value': output.percent
-                    },
-                    'total': {
-                        'name': f'{AREA} {disk.mountpoint} Total',
-                        'id': f'{AREA.lower()}_{disk.mountpoint.lower().replace('/', 'slash_').replace('__', '_')}_total',
-                        'class': 'data_size',
-                        'unit': None,
-                        'value': output.total
-                    },
-                    'used': {
-                        'name': f'{AREA} {disk.mountpoint} Used',
-                        'id': f'{AREA.lower()}_{disk.mountpoint.lower().replace('/', 'slash_').replace('__', '_')}_used',
-                        'class': 'data_size',
-                        'unit': None,
-                        'value': output.used
-                    },
-                    'free': {
-                        'name': f'{AREA} {disk.mountpoint} Free',
-                        'id': f'{AREA.lower()}_{disk.mountpoint.lower().replace('/', 'slash_').replace('__', '_')}_free',
-                        'class': 'data_size',
-                        'unit': None,
-                        'value': output.free
-                    }
-                })
-        logger.debug(f'Resources output received for {AREA}: {data}')
-    except psutil.AccessDenied:
-        return 'ACCESS_DENIED', f'Unable to access {AREA}!'
-    except psutil.TimeoutExpired:
-        return 'TIMEOUT', f'Timeout when trying to retrieve {AREA}!'
-    except Exception as ex:
-        return 'UNKNOWN', f'Unexpected error when trying to retrieve {AREA}! Output: {str(ex)}'
+#     try:
+#         data = []
+#         disks = psutil.disk_partitions(all=False)
+#         for disk in disks:
+#             if disk.fstype not in DISK_TYPES_TO_IGNORE:
+#                 output = psutil.disk_usage(disk.mountpoint)
+#                 data.append({
+#                     'utilization': {
+#                         'name': f'{AREA} {disk.mountpoint} Utilization',
+#                         'id': f'{AREA.lower()}_{disk.mountpoint.lower().replace('/', 'slash_').replace('__', '_')}_utilization',
+#                         'class': None,
+#                         'unit': '%',
+#                         'value': output.percent
+#                     },
+#                     'total': {
+#                         'name': f'{AREA} {disk.mountpoint} Total',
+#                         'id': f'{AREA.lower()}_{disk.mountpoint.lower().replace('/', 'slash_').replace('__', '_')}_total',
+#                         'class': 'data_size',
+#                         'unit': None,
+#                         'value': output.total
+#                     },
+#                     'used': {
+#                         'name': f'{AREA} {disk.mountpoint} Used',
+#                         'id': f'{AREA.lower()}_{disk.mountpoint.lower().replace('/', 'slash_').replace('__', '_')}_used',
+#                         'class': 'data_size',
+#                         'unit': None,
+#                         'value': output.used
+#                     },
+#                     'free': {
+#                         'name': f'{AREA} {disk.mountpoint} Free',
+#                         'id': f'{AREA.lower()}_{disk.mountpoint.lower().replace('/', 'slash_').replace('__', '_')}_free',
+#                         'class': 'data_size',
+#                         'unit': None,
+#                         'value': output.free
+#                     }
+#                 })
+#         logger.debug(f'Resources output received for {AREA}: {data}')
+#     except psutil.AccessDenied:
+#         return 'ACCESS_DENIED', f'Unable to access {AREA}!'
+#     except psutil.TimeoutExpired:
+#         return 'TIMEOUT', f'Timeout when trying to retrieve {AREA}!'
+#     except Exception as ex:
+#         return 'UNKNOWN', f'Unexpected error when trying to retrieve {AREA}! Output: {str(ex)}'
 
-    return data
+#     return data
 
 # NOTE: Expand if needed
 # def get_networks():
