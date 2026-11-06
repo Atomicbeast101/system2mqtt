@@ -1,7 +1,7 @@
 FROM python:3.15-alpine
 
 # Build Arguments
-ARG APP_VERSION=0.0
+ARG APP_VERSION=MISSING
 ENV APP_VERSION=${APP_VERSION}
 
 # Dependencies
